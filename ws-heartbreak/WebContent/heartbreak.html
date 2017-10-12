@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>heart break</title>
+</head>
+<body>
+
+<script>
+var websocket = new WebSocket("ws://127.0.0.1:8080/ws-heartbreak/websocket/count");
+
+websocket.onMessage = function(e) {
+	var websocket = e.target;
+	var msg = e.data;
+	if(msg === 'hi') {
+		websocket.send('yes');
+	}
+}
+
+</script>
+</body>
+</html>
