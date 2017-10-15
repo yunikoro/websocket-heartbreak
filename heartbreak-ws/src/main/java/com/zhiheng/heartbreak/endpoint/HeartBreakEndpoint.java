@@ -11,6 +11,15 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+/**
+ * 
+ * websocket heart break endpoint
+ * client side viewing-time count
+ * 
+ * @author zhiheng
+ *
+ */
+
 @ServerEndpoint(value = "/websocket/count")
 public class HeartBreakEndpoint {
 	
@@ -33,7 +42,12 @@ public class HeartBreakEndpoint {
 						isPong = false;
 					} else {
 						System.out.println("INFO - Check the time.");
-						localSession.close();
+						try {
+							localSession.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						
 						this.cancel();
 					}
 					
